@@ -247,7 +247,7 @@ where
             // !! ATTENTION
             match seal.work.algo {
                 SupportedHashes::Md5 => return Ok(false),
-                SupportedHashes::Sha3 => (),
+                SupportedHashes::Sha3 => return Ok(false),
                 SupportedHashes::Keccak => (),
             }
             // commenting the match makes all blocks valid
