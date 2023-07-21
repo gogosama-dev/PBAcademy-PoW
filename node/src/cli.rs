@@ -13,7 +13,7 @@ pub struct Cli {
     pub eth: crate::eth::EthConfiguration,
 
     /// The mining algorithm to use
-    #[clap(long, value_parser = parse_algo, default_value = "md5")]
+    #[clap(long, value_parser = parse_algo, default_value = "Keccak")]
     pub mining_algo: multi_pow::SupportedHashes,
 
     /// whether to use instant seal
@@ -53,13 +53,13 @@ pub struct BuildSpecCmd {
     pub initial_difficulty: u32,
 }
 
+// disallow anciet weak md5 algo
 fn parse_algo(s: &str) -> Result<SupportedHashes, String> {
     Ok(match s {
-        "md" | "Md" | "md5" | "Md5" => SupportedHashes::Md5,
         "sha" | "sha3" | "Sha" | "Sha3" => SupportedHashes::Sha3,
         "keccak" | "Keccak" => SupportedHashes::Keccak,
         s => panic!(
-            "Wrong mining algo: {}. Possible values: md5, sha3, keccak",
+            "Wrong mining algo: {}. Possible values: sha3, keccak",
             s
         ),
     })
