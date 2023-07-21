@@ -244,6 +244,7 @@ where
         if parent_number < fork_height {
             // To begin with we only allow md5 hashes for our pow
             // After the fork height this check is skipped so all the hashes become valid
+            // !! ATTENTION
             match seal.work.algo {
                 SupportedHashes::Md5 => (),
                 SupportedHashes::Sha3 => return Ok(false),
