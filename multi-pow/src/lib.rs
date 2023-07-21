@@ -245,11 +245,12 @@ where
             // To begin with we only allow md5 hashes for our pow
             // After the fork height this check is skipped so all the hashes become valid
             // !! ATTENTION
-            match seal.work.algo {
-                SupportedHashes::Md5 => (),
-                SupportedHashes::Sha3 => return Ok(false),
-                SupportedHashes::Keccak => return Ok(false),
-            }
+            //match seal.work.algo {
+            //    SupportedHashes::Md5 => (),
+            //    SupportedHashes::Sha3 => return Ok(false),
+            //    SupportedHashes::Keccak => return Ok(false),
+            //}
+            // commenting the match makes all blocks valid
         }
 
         // See whether the hash meets the difficulty requirement. If not, fail fast.
