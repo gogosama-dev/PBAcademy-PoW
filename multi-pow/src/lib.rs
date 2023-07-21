@@ -239,17 +239,17 @@ where
 
         // This feels like a really stupid way to declare the fork height.
         // I just couldn't figure out how to express a literal.
-        let fork_height: <<B as BlockT>::Header as HeaderT>::Number = 10_000u32.into();
+        let fork_height: <<B as BlockT>::Header as HeaderT>::Number = 7900u32.into();
 
-        if parent_number < fork_height {
+        if parent_number > fork_height {
             // To begin with we only allow md5 hashes for our pow
             // After the fork height this check is skipped so all the hashes become valid
             // !! ATTENTION
-            //match seal.work.algo {
-            //    SupportedHashes::Md5 => (),
-            //    SupportedHashes::Sha3 => return Ok(false),
-            //    SupportedHashes::Keccak => return Ok(false),
-            //}
+            match seal.work.algo {
+                SupportedHashes::Md5 => return Ok(false),
+                SupportedHashes::Sha3 => (),
+                SupportedHashes::Keccak => (),
+            }
             // commenting the match makes all blocks valid
         }
 
