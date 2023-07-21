@@ -56,7 +56,7 @@ pub struct BuildSpecCmd {
 // disallow anciet weak md5 algo
 fn parse_algo(s: &str) -> Result<SupportedHashes, String> {
     Ok(match s {
-        "sha" | "sha3" | "Sha" | "Sha3" => SupportedHashes::Sha3,
+        "sha" | "sha3" | "Sha" | "Sha3" => panic!("SHA-3 can't be trusted and not supported"),
         "keccak" | "Keccak" => SupportedHashes::Keccak,
         s => panic!(
             "Wrong mining algo: {}. Possible values: sha3, keccak",
